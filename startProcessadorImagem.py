@@ -18,7 +18,7 @@ path = args["output"]
 distance = args["distance"]
 
 print("[INFO] path: ", path)
-print("[INFO] distance: %.1f cm" % distance)
+print("[INFO] distance: %.2f mm" % distance)
 processador = Processador_Dois(path, distance)
 processador.imageProcessor()
 

@@ -7,8 +7,10 @@ class Processador_Dois:
     
     def __init__(self, inputPath, distance):
         self.inputPath = inputPath
-        self.distance = distance
-        self.focalLength = 0.4 #In milimiters the focal length of logitech c510
+        self.distance = distance #In milimiters
+        self.focalLength = 4 #In milimiters the focal length of logitech c510
+        self.sensorWidth = 3.58 #In milimiters the sensor wide of logitech c510 
+        self.sensorHeight = 2.02 #In milimiters the sensor high of logitech c510 
 
     def imageProcessor(self):
 	    image = cv2.imread(self.inputPath, cv2.IMREAD_COLOR)
@@ -32,6 +34,7 @@ class Processador_Dois:
 	    
 	    path = os.path.sep.join((diretorio, filename))
 	    
+	    imageHeight, imageWidth, channels = image.shape
 	    
 	    for objeto in contornos:
 	        rect = cv2.boundingRect(objeto)
@@ -40,11 +43,13 @@ class Processador_Dois:
 
 	        if(countour < 0): continue
 
-	        if (w > 50 or h > 50):   
+	        if (w > 50 or h > 50):
                     cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
-                    objectArea = (countour*self.distance)/self.focalLength
-                    cv2.putText(image,'A: %.2f cm' % objectArea,(x+w+10,y+h),0,0.3,(0,255,0))
-                    print(countour)
+                    objectWidth = (w*self.distance*self.sensorWidth)/(self.focalLength*imageWidth)
+                    objectHeight = (h*self.distance*self.sensorHeight)/(self.focalLength*imageHeight)
+                    objectArea = objectHeight*objectWidth
+                    cv2.putText(image, 'A: %.2f mm' % objectArea, (x+w+10, y+h), 0, 0.3,(0,255,0))
+                    print(objectArea)
 	    
 	    cv2.imwrite(path, image)
 	    cv2.imshow("Imagem Segmentada", imgSegmentada)

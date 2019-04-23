@@ -93,10 +93,10 @@ class Projeto:
         
         print(t_transcorrido)
         
-        distance = (t_transcorrido * 17000)
+        distance = (t_transcorrido * 170000)
         
-        print("[INFO] distance %.1f cm" % distance)
-        # Distancia da foto das moedas 27 cm.
+        print("[INFO] distance %.2f mm" % distance)
+        # Distancia da foto das moedas 27 mm.
         #Fotos na area de trabalho
         processador = Processador_Dois(path, distance)
         processador.imageProcessor()
