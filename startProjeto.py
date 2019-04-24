@@ -9,8 +9,8 @@ import time
 ap = argparse.ArgumentParser()
 ap.add_argument("-o", "--output", required=True, 
         help="path to output directory to store snapshots")
-ap.add_argument("-p", "--picamera", type=int, default=-1,
-        help="Whether or not the Raspberry Pi camera should be used")
+#ap.add_argument("-p", "--picamera", type=int, default=-1,
+#        help="Whether or not the Raspberry Pi camera should be used")
 
 args = vars(ap.parse_args())
 

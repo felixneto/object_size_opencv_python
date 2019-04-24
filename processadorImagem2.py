@@ -48,12 +48,8 @@ class Processador_Dois:
                     objectWidth = (w*self.distance*self.sensorWidth)/(self.focalLength*imageWidth)
                     objectHeight = (h*self.distance*self.sensorHeight)/(self.focalLength*imageHeight)
                     objectArea = objectHeight*objectWidth
-                    cv2.putText(image, 'A: %.2f mm' % objectArea, (x+w+10, y+h), 0, 0.3,(0,255,0))
+                    cv2.putText(image, 'H: %.2f mm' % objectHeight, (x+w+10, y+h-10), 0, 0.3,(0,255,0))
+                    cv2.putText(image, 'W: %.2f mm' % objectWidth, (x+w+10, y+h), 0, 0.3,(0,255,0))
                     print(objectArea)
 	    
 	    cv2.imwrite(path, image)
-	    cv2.imshow("Imagem Segmentada", imgSegmentada)
-	    cv2.imshow("Imagem", image)
-
-	    cv2.waitKey(0)
-	    cv2.destroyAllWindows()
